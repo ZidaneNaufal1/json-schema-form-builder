@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form Studio — Pembuat Formulir</title><link rel="stylesheet" href="style.css">
+  <script src="schema.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+  <header class="masthead"><div><p class="brand">FORM STUDIO <span>•</span> LOKAL</p><h1>Susun formulir, lihat hasilnya.</h1><p class="intro">Tulis schema sederhana, uji isian, lalu simpan hasil sebagai JSON.</p></div><p class="note">Data formulir tetap di perangkat. Server contoh hanya menerima validasi lokal.</p></header>
+  <main class="workspace">
+    <section aria-labelledby="editor-title" class="panel editor">
+      <div class="section-head"><div><h2 id="editor-title">Schema</h2><p>Object dengan teks, angka, pilihan, dan field wajib.</p></div><span class="badge">JSON</span></div>
+      <label for="schema-input">Definisi schema</label>
+      <textarea id="schema-input" spellcheck="false" rows="19">{
+  "title": "Pendaftaran kegiatan",
+  "type": "object",
+  "properties": {
+    "nama": {"type": "string", "title": "Nama"},
+    "angkatan": {"type": "number", "title": "Angkatan"},
+    "kelas": {"type": "string", "title": "Kelas", "enum": ["Pagi", "Sore"]}
+  },
+  "required": ["nama", "kelas"]
+}</textarea>
+      <div class="actions"><button id="build" type="button">Buat pratinjau</button><button id="reset" type="button" class="secondary">Contoh awal</button></div>
+      <p id="schema-status" role="status" aria-live="polite"></p>
+    </section>
+    <section aria-labelledby="preview-title" class="panel preview">
+      <div class="section-head"><div><h2 id="preview-title">Pratinjau</h2><p>Isi formulir sebelum memeriksa atau mengekspor hasil.</p></div><span class="badge">LANGSUNG</span></div>
+      <form id="preview-form" novalidate><div id="fields"></div><div class="actions"><button type="submit">Periksa isian</button><button id="export" type="button" class="secondary">Ekspor JSON</button></div></form>
+      <p id="result-status" role="status" aria-live="polite"></p>
+      <div class="result"><h3>Hasil</h3><pre id="output" aria-live="polite">Belum ada hasil.</pre></div>
+    </section>
+  </main>
+  <footer><p>Mendukung subset JSON Schema, bukan seluruh spesifikasi. <a href="README.md">Baca panduan</a></p></footer>
+</body></html>
